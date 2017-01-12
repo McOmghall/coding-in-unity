@@ -2,20 +2,16 @@
 using System.Collections;
 
 public class Ship : MonoBehaviour {
+    public float metersPerSecond = 1;
 
 	void Update () {
-        Vector3 position = transform.position;
-        position.x += 1;
-        if (position.x > 250)
+        Vector3 position = transform.localPosition;
+        position.x = position.x + Time.deltaTime * metersPerSecond;
+        if (position.x - 3 > 0.001f)
         {
             position.x = -position.x;
         }
 
-        transform.position = position;
+        transform.localPosition = position;
 	}
-
-    void OnParticleTrigger()
-    {
-        Debug.Log("Collided");
-    }
 }
